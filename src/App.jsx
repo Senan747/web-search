@@ -1,34 +1,31 @@
-import React from 'react';
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
-import ImageSearch from './Components/ImageSearch';
-import WebSearch from './Components/WebSearch';
-import NewsSearch from './Components/NewsSearch';
+import React, { useState } from 'react';
+import ImageSearch from './Components/ImageSearch.jsx';
+import WebSearch from './Components/WebSearch.jsx';
+import NewsSearch from './Components/NewsSearch.jsx';
 
 function App() {
-  return (
-    <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/WebSearch">Home</Link>
-            </li>
-            <li>
-              <Link to="/ImageSearch">Image</Link>
-            </li>
-            <li>
-              <Link to="/NewsSearch">News</Link>
-            </li>
-          </ul>
-        </nav>
+  const [activeComponent, setActiveComponent] = useState(null);
 
-        <Switch>
-          <Route exact path="/WebSearch" component={WebSearch} />
-          <Route exact path="/ImageSearch" component={ImageSearch} />
-          <Route exact path="/NewsSearch" component={NewsSearch} />
-        </Switch>
+  const handleItemClick = (component) => {
+    setActiveComponent(component);
+  };
+
+  return (
+    <div className='flex flex-col items-center'>
+      <input type="text"  className='border-2 border-gega-black rounded-xl'/>
+      <div>
+        <ul className='flex flex-row justify-around items-center w-96 mt-10'>
+          <li className='bg' onClick={() => handleItemClick('web')}>Home</li>
+          <li className='bg' onClick={() => handleItemClick('image')}>Images</li>
+          <li className='bg' onClick={() => handleItemClick('news')}>News</li>
+        </ul>
       </div>
-    </Router>
+      <div>
+        {activeComponent === 'web' && <WebSearch />}
+        {activeComponent === 'image' && <ImageSearch />}
+        {activeComponent === 'news' && <NewsSearch />}
+      </div>
+    </div>
   );
 }
 

@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react'
 
-const App = () => {
+
+function WebSearch() {
+
   const [result, setResult] = useState([]);
 
   useEffect(() => {
@@ -32,16 +34,16 @@ const App = () => {
   }, []);
 
   return (
-    <div>
+     <div>
       {result.map((each) => (
         <div key={each.id}>
           <h3>{each.title}</h3>
           <p>{each.description}</p>
-          <img src={each.image.url} alt="" />
+          <p>{each.body}</p>
         </div>
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default WebSearch;
