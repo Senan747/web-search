@@ -3,41 +3,33 @@ import React, { useEffect, useState } from 'react';
 const NewsSearch = () => {
   const [result, setResult] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const url = 'https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/NewsSearchAPI';
-      const params = {
-        q: 'taylor',
-        autoCorrect: 'true'
-      };
-      const queryString = new URLSearchParams(params).toString();
-      const options = {
-        method: 'GET',
-        headers: {
-          'X-RapidAPI-Key': 'c3eb9459b6msh1be82007372ccf6p10f85ajsned17d1aabe3c',
-          'X-RapidAPI-Host': 'contextualwebsearch-websearch-v1.p.rapidapi.com'
-        }
-      };
-
-      try {
-        const response = await fetch(`${url}?${queryString}`, options);
-        const resultJson = await response.json();
-        setResult(resultJson.value);
-      } catch (error) {
-        console.error(error);
+  const fetchNews = async () => {
+    try {
+      const response = await fetch(
+        `https://newsdata.io/api/1/news?apikey=pub_25576383d108bfd252758ab16fe54450fd226&q=pizza`
+      );
+      const data = await response.json();
+      if (data.response && data.response.results) {
+        setResult(data.response.results);
+        console.log(data.response.results);
+      } else {
+        setResult([]); // Set an empty array if 'results' is undefined
       }
-    };
+    } catch (error) {
+      console.error('Error fetching news:', error);
+      setResult([]); // Set an empty array in case of error
+    }
+  };
 
-    fetchData();
+  useEffect(() => {
+    fetchNews();
   }, []);
 
   return (
     <div>
       {result.map((each) => (
-        <div key={each.id}>
+        <div >
           <h3>{each.title}</h3>
-          <p>{each.description}</p>
-          <a href={each.url}></a>
         </div>
       ))}
     </div>

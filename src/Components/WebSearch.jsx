@@ -16,7 +16,7 @@ function WebSearch() {
       const options = {
         method: 'GET',
         headers: {
-          'X-RapidAPI-Key': 'c3eb9459b6msh1be82007372ccf6p10f85ajsned17d1aabe3c',
+          'X-RapidAPI-Key': 'cc05150e66msh28c075f2d734b49p1bc81djsn9dac851861e4',
           'X-RapidAPI-Host': 'contextualwebsearch-websearch-v1.p.rapidapi.com'
         }
       };
