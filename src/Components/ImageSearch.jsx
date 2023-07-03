@@ -1,47 +1,47 @@
-import React, {useState, useEffect} from 'react'
+import React, { useEffect, useState } from 'react';
 
-
-function ImageSearch() {
-  const [result, setResult] = useState([]);
+function PhotoComponent() {
+  const [photos, setPhotos] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const url = 'https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI';
-      const params = {
-        q: 'taylor',
-        autoCorrect: 'true'
-        
-      };
-      const queryString = new URLSearchParams(params).toString();
-      const options = {
-        method: 'GET',
-        headers: {
-          'X-RapidAPI-Key': 'cc05150e66msh28c075f2d734b49p1bc81djsn9dac851861e4',
-          'X-RapidAPI-Host': 'contextualwebsearch-websearch-v1.p.rapidapi.com'
-        }
-      };
-
-      try {
-        const response = await fetch(`${url}?${queryString}`, options);
-        const resultJson = await response.json();
-        setResult(resultJson.value);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
+    fetchPhotos();
   }, []);
 
+  const fetchPhotos = () => {
+    const apiKey = '38023155-d92f1f49c2a19f8834825764e';
+    const searchQuery = 'Cristiano+Ronaldo';
+    const url = `https://pixabay.com/api/?key=${apiKey}&q=${searchQuery}&image_type=photo`;
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        if (data.hits && data.hits.length > 0) {
+          setPhotos(data.hits);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching photos:', error);
+      });
+  };
+
+  if (photos.length === 0) {
+    return <div>There is no picture</div>;
+  }
+
   return (
-     <div>
-      {result.map((each) => (
-        <div key={each.url}>
-          <img src={each.url} alt="" />
-        </div>
-      ))}
+    <div>
+      <ul className='flex flex-wrap'>
+        {photos.map(photo => (
+          <li key={photo.id} className='ml-16'>
+            <img src={photo.previewURL} alt={photo.tags} />
+            <p>Photographer: {photo.user}</p>
+            <p>Dimensions: {photo.imageWidth}x{photo.imageHeight}</p>
+            <p>Downloads: {photo.downloads}</p>
+          </li>
+        ))}
+      </ul>
     </div>
-  )
+  );
 }
 
-export default ImageSearch
+export default PhotoComponent;

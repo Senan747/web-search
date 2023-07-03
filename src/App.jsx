@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ImageSearch from './Components/ImageSearch.jsx';
 import WebSearch from './Components/WebSearch.jsx';
 import NewsSearch from './Components/NewsSearch.jsx';
+import VideoSearch from './Components/VideoSearch.jsx';
 
 function App() {
   const [activeComponent, setActiveComponent] = useState(null);
@@ -18,12 +19,14 @@ function App() {
           <li className='bg' onClick={() => handleItemClick('web')}>Home</li>
           <li className='bg' onClick={() => handleItemClick('image')}>Images</li>
           <li className='bg' onClick={() => handleItemClick('news')}>News</li>
+          <li className='bg' onClick={() => handleItemClick('video')}>Video</li>
         </ul>
       </div>
       <div>
         {activeComponent === 'web' && <WebSearch />}
         {activeComponent === 'image' && <ImageSearch />}
         {activeComponent === 'news' && <NewsSearch />}
+        {activeComponent === 'video' && <VideoSearch />}
       </div>
     </div>
   );

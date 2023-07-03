@@ -40,8 +40,8 @@ const App = () => {
             <div className="col-span-1">
               <h2 className="text-xl font-bold mb-2">{result.topic}</h2>
               <p className="text-gray-700 mb-4">
-                {result.description.split(" ").slice(0, 50).join(" ")}
-                {result.description.split(" ").length > 50 && "... Read more"}
+                {/* {result.description.split(" ").slice(0, 50).join(" ")}
+                {result.description.split(" ").length > 50 && "... Read more"} */}
               </p>
               <div className="flex flex-col">
                 <p>
