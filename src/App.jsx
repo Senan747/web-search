@@ -6,14 +6,19 @@ import VideoSearch from './Components/VideoSearch.jsx';
 
 function App() {
   const [activeComponent, setActiveComponent] = useState(null);
+  const [input, setInput] = useState("")
 
   const handleItemClick = (component) => {
     setActiveComponent(component);
   };
+  const handleInput = (e) => {
+    setInput(e.target.value)
+    console.log(e.target.value)
+  }
 
   return (
     <div className='flex flex-col items-center'>
-      <input type="text"  className='border-2 border-gega-black rounded-xl'/>
+      <input type="text" onChange={handleInput} className='border-2 border-gega-black rounded-xl'/>
       <div>
         <ul className='flex flex-row justify-around items-center w-96 mt-10'>
           <li className='bg' onClick={() => handleItemClick('web')}>Home</li>
@@ -24,9 +29,9 @@ function App() {
       </div>
       <div>
         {activeComponent === 'web' && <WebSearch />}
-        {activeComponent === 'image' && <ImageSearch />}
-        {activeComponent === 'news' && <NewsSearch />}
-        {activeComponent === 'video' && <VideoSearch />}
+        {activeComponent === 'image' && <ImageSearch searchQuery1={input}/>}
+        {activeComponent === 'news' && <NewsSearch searchQuery1={input} />}
+        {activeComponent === 'video' && <VideoSearch searchQuery1={input} />}
       </div>
     </div>
   );

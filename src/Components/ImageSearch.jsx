@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 
-function PhotoComponent() {
+function PhotoComponent({ searchQuery1 }) {
   const [photos, setPhotos] = useState([]);
 
   useEffect(() => {
     fetchPhotos();
-  }, []);
+  }, [searchQuery1]);
 
   const fetchPhotos = () => {
     const apiKey = '38023155-d92f1f49c2a19f8834825764e';
-    const searchQuery = 'Cristiano+Ronaldo';
+    const searchQuery = searchQuery1;
     const url = `https://pixabay.com/api/?key=${apiKey}&q=${searchQuery}&image_type=photo`;
 
     fetch(url)
@@ -27,7 +27,7 @@ function PhotoComponent() {
   if (photos.length === 0) {
     return <div>There is no picture</div>;
   }
-
+  console.log(searchQuery1)
   return (
     <div>
       <ul className='flex flex-wrap'>

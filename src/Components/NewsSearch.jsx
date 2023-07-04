@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-const API_KEY = "pub_25576383d108bfd252758ab16fe54450fd226";
-const SEARCH_QUERY = "hadise";
 
-const App = () => {
+
+const App = ({ searchQuery1 }) => {
   const [results, setResults] = useState([]);
-
+  const API_KEY = "pub_25576383d108bfd252758ab16fe54450fd226";
+  const SEARCH_QUERY = searchQuery1;
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -22,7 +22,7 @@ const App = () => {
     };
 
     fetchData();
-  }, []);
+  }, [searchQuery1]);
 
   return (
     <div className="container mx-auto">

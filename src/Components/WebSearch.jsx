@@ -9,7 +9,7 @@ function WebSearch() {
     const fetchData = async () => {
       const url = 'https://bing-web-search1.p.rapidapi.com/search';
       const params = {
-        q: 'cristiano ronaldo',
+        q: 'ronaldo',
         mkt: 'en-us',
         safeSearch: 'Off',
         textFormat: 'Raw',
