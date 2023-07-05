@@ -1,34 +1,36 @@
-import React, {useEffect, useState} from 'react'
-
+import React, { useEffect, useState } from 'react';
 
 function WebSearch() {
-
-  const [result, setResult] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [results, setResults] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const url = 'https://bing-web-search1.p.rapidapi.com/search';
-      const params = {
-        q: 'ronaldo',
-        mkt: 'en-us',
-        safeSearch: 'Off',
-        textFormat: 'Raw',
-        freshness: 'Day'
-      };
-      const queryString = new URLSearchParams(params).toString();
-      const options = {
-        method: 'GET',
-        headers: {
-          'X-BingApis-SDK': 'true',
-          'X-RapidAP&I-Key': 'cc05150e66msh28c075f2d734b49p1bc81djsn9dac851861e4',
-          'X-RapidAPI-Host': 'bing-web-search1.p.rapidapi.com'
-        }
-      };
+      const apiKey = 'cc05150e66msh28c075f2d734b49p1bc81djsn9dac851861e4';
+      const url = 'https://google-search83.p.rapidapi.com/google?query=word%20cup&gl=us&lr=en&num=10&start=0?&X-RapidAPI-Key=fd1c467d8dmsh55a0572f8411468p175498jsn801386789ba5';
 
       try {
-        const response = await fetch(`${url}?${queryString}`, options);
-        const resultJson = await response.json();
-        setResult(resultJson.value);
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'X-RapidAPI-Key': apiKey,
+            'X-RapidAPI-Host': 'google-search83.p.rapidapi.com',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('API request failed');
+        }
+
+        let data;
+        try {
+          data = await response.json();
+        } catch (error) {
+          const text = await response.text();
+        }
+
+        setResults(data);
+        setLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -37,19 +39,21 @@ function WebSearch() {
     fetchData();
   }, []);
 
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <div>
-      {result.map((each) => (
-        <div className='mb-8'>
-          <a href={each.url}>
-            <h3 className='text-3xl font-bold'>{each.name}</h3>
-            <p>{each.description}</p>
-          </a>
+      {results.map((item) => (
+        <div key={item.title}>
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+          <a href={item.url}>{item.url}</a>
         </div>
       ))}
     </div>
   );
-  
 }
- 
+
 export default WebSearch;

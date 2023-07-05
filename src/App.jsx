@@ -28,7 +28,7 @@ function App() {
         </ul>
       </div>
       <div>
-        {activeComponent === 'web' && <WebSearch />}
+        {activeComponent === 'web' && <WebSearch searchQuery1={input} />}
         {activeComponent === 'image' && <ImageSearch searchQuery1={input}/>}
         {activeComponent === 'news' && <NewsSearch searchQuery1={input} />}
         {activeComponent === 'video' && <VideoSearch searchQuery1={input} />}
