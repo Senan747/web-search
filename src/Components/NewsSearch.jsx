@@ -160,7 +160,7 @@ const NewsSearch = ({ searchQuery1 }) => {
   const API_KEY = "pub_25576d7f5e3fad8ad12a5e4a846d450ef7aed";
   const SEARCH_QUERY = searchQuery1;
 
-  const handleSelection = (e) => {
+  const handleSelection = (e) => {  
     setSelection(e.target.value.toLowerCase());
   };
 
@@ -180,7 +180,6 @@ const NewsSearch = ({ searchQuery1 }) => {
         setResults(data.results);
       } catch (error) {
         console.error("Error fetching data:", error);
-        // Handle the error appropriately (e.g., display an error message)
       }
     };
 

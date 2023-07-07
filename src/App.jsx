@@ -21,6 +21,7 @@ function App() {
       <input type="text" onChange={handleInput} className='border-2 border-gega-black rounded-xl'/>
       <div>
         <ul className='flex flex-row justify-around items-center w-96 mt-10'>
+          
           <li className='bg' onClick={() => handleItemClick('web')}>Home</li>
           <li className='bg' onClick={() => handleItemClick('image')}>Images</li>
           <li className='bg' onClick={() => handleItemClick('news')}>News</li>

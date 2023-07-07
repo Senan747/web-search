@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function PhotoComponent({ searchQuery1 }) {
+function ImageSearch({ searchQuery1 }) {
   const [photos, setPhotos] = useState([]);
 
   useEffect(() => {
@@ -44,4 +44,4 @@ function PhotoComponent({ searchQuery1 }) {
   );
 }
 
-export default PhotoComponent;
+export default ImageSearch;

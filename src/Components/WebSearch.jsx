@@ -1,59 +1,70 @@
 import React, { useEffect, useState } from 'react';
 
-function WebSearch() {
-  const [loading, setLoading] = useState(true);
-  const [results, setResults] = useState([]);
+function Web() {
+  const [news, setNews] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const apiKey = 'cc05150e66msh28c075f2d734b49p1bc81djsn9dac851861e4';
-      const url = 'https://google-search83.p.rapidapi.com/google?query=word%20cup&gl=us&lr=en&num=10&start=0?&X-RapidAPI-Key=fd1c467d8dmsh55a0572f8411468p175498jsn801386789ba5';
-
-      try {
-        const response = await fetch(url, {
-          method: 'GET',
-          headers: {
-            'X-RapidAPI-Key': apiKey,
-            'X-RapidAPI-Host': 'google-search83.p.rapidapi.com',
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error('API request failed');
-        }
-
-        let data;
-        try {
-          data = await response.json();
-        } catch (error) {
-          const text = await response.text();
-        }
-
-        setResults(data);
-        setLoading(false);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
+    fetchPhotos();
   }, []);
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+  const fetchPhotos = () => {
+    const url = `https://newsdata.io/api/1/news?apikey=pub_25576d7f5e3fad8ad12a5e4a846d450ef7aed&category=top&language=en`;
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        if (data.results && data.results.length > 0) {
+          setNews(data.results);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching photos:', error);
+      });
+  };
 
+ 
   return (
-    <div>
-      {results.map((item) => (
-        <div key={item.title}>
-          <h3>{item.title}</h3>
-          <p>{item.description}</p>
-          <a href={item.url}>{item.url}</a>
+    <div class="container">
+  <h1 class="text-3xl font-bold mb-4 text-center mt-4">Top News in the world</h1>
+  <ul class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    {news.map((result, index) => (
+      <li key={index} class="bg-white rounded-lg shadow-md p-6">
+        <img
+          src={result.image_url}
+          class="w-full min-h-[150px] mb-4"
+          alt="No picture available"
+        />
+        <h2 class="text-xl font-bold mb-2">{result.topic}</h2>
+        <p class="text-gray-700 mb-4">
+          {result.description.slice(0, 70)}
+        </p>
+        <div class="flex flex-col">
+          <p>
+            <span class="font-bold">Date: </span>
+            {result.pubDate}
+          </p>
+          <p>
+            <span class="font-bold">Country: </span>
+            {result.country}
+          </p>
+          <p>
+            <span class="font-bold">Language: </span>
+            {result.language}
+          </p>
+          <p>
+            <span class="font-bold">Publisher: </span>
+            {result.creator}
+          </p>
+          <p>
+            <span class="font-bold">Category: </span>
+            {result.category}
+          </p>
         </div>
-      ))}
-    </div>
-  );
+      </li>
+    ))}
+  </ul>
+</div>
+
+  )
 }
 
-export default WebSearch;
+export default Web;
