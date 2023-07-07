@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-
-
 const NewsSearch = ({ searchQuery1 }) => {
   const countries = [
     { code: 'AF', name: 'Afghanistan' },
@@ -155,39 +153,45 @@ const NewsSearch = ({ searchQuery1 }) => {
     { code: 'ZM', name: 'Zambia' },
     { code: 'ZW', name: 'Zimbabwe' }
   ];
-  const [selection, setSelection] = useState('')
-  
+
+
+  const [selection, setSelection] = useState("");
   const [results, setResults] = useState([]);
-  const API_KEY = "pub_25576383d108bfd252758ab16fe54450fd226";
+  const API_KEY = "pub_25576d7f5e3fad8ad12a5e4a846d450ef7aed";
   const SEARCH_QUERY = searchQuery1;
+
+  const handleSelection = (e) => {
+    setSelection(e.target.value.toLowerCase());
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `https://newsdata.io/api/1/news?apikey=${API_KEY}&q=${encodeURIComponent(
-            SEARCH_QUERY
-          )}`
-        );
+        let url = `https://newsdata.io/api/1/news?apikey=${API_KEY}&q=${encodeURIComponent(
+          SEARCH_QUERY
+        )}`;
+
+        if (selection) {
+          url += `&language=${selection}`;
+        }
+
+        const response = await fetch(url);
         const data = await response.json();
         setResults(data.results);
       } catch (error) {
         console.error("Error fetching data:", error);
+        // Handle the error appropriately (e.g., display an error message)
       }
     };
 
     fetchData();
-  }, [searchQuery1]);
-
-  const handleSelection = (e) => {
-    setSelection(e.target.value)
-    console.log(e.target.value)
-  }
+  }, [SEARCH_QUERY, selection]);
 
   return (
     <div className="container mx-auto">
-      <select className="border-2">
+      <select className="border-2" onChange={handleSelection}>
         {countries.map((country) => (
-          <option key={country.code} value={country.code} onChange={handleSelection}>
+          <option key={country.code} value={country.code}>
             {country.name}
           </option>
         ))}
@@ -206,10 +210,7 @@ const NewsSearch = ({ searchQuery1 }) => {
             </div>
             <div className="col-span-1">
               <h2 className="text-xl font-bold mb-2">{result.topic}</h2>
-              <p className="text-gray-700 mb-4">
-                  {result.description.split(" ").slice(0, 50).join(" ")}
-                
-              </p>
+              <p className="text-gray-700 mb-4">{result.description}</p>
               <div className="flex flex-col">
                 <p>
                   <span className="font-bold">Date: </span>
