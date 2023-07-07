@@ -3,9 +3,14 @@ import ImageSearch from './Components/ImageSearch.jsx';
 import WebSearch from './Components/WebSearch.jsx';
 import NewsSearch from './Components/NewsSearch.jsx';
 import VideoSearch from './Components/VideoSearch.jsx';
+import {BiSearchAlt} from 'react-icons/bi'
+import {AiFillHome} from 'react-icons/ai'
+import {BiNews} from 'react-icons/bi'
+import {BsFillImageFill} from 'react-icons/bs'
+import {AiFillVideoCamera} from 'react-icons/ai'
 
 function App() {
-  const [activeComponent, setActiveComponent] = useState(null);
+  const [activeComponent, setActiveComponent] = useState("web");
   const [input, setInput] = useState("")
 
   const handleItemClick = (component) => {
@@ -18,14 +23,15 @@ function App() {
 
   return (
     <div className='flex flex-col items-center'>
-      <input type="text" onChange={handleInput} className='border-2 border-gega-black rounded-xl'/>
+        <input type="text" onChange={handleInput} className='border-2 border-gega-black rounded-xl relative'/> 
+        <BiSearchAlt className='absolute top-2 right-40'/>
       <div>
         <ul className='flex flex-row justify-around items-center w-96 mt-10'>
           
-          <li className='bg' onClick={() => handleItemClick('web')}>Home</li>
-          <li className='bg' onClick={() => handleItemClick('image')}>Images</li>
-          <li className='bg' onClick={() => handleItemClick('news')}>News</li>
-          <li className='bg' onClick={() => handleItemClick('video')}>Video</li>
+          <li className='bg flex flex-row items-center' onClick={() => handleItemClick('web')}><AiFillHome />Home</li>
+          <li className='bg flex flex-row items-center' onClick={() => handleItemClick('image')}><BsFillImageFill />Images</li>
+          <li className='bg flex flex-row items-center' onClick={() => handleItemClick('news')}><BiNews />News</li>
+          <li className='bg flex flex-row items-center' onClick={() => handleItemClick('video')}><AiFillVideoCamera />Video</li>
         </ul>
       </div>
       <div>
