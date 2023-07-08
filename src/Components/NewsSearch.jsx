@@ -232,7 +232,7 @@ const NewsSearch = ({ searchQuery1 }) => {
     { name: "Urdu", code: "ur" },
     { name: "Uzbek", code: "uz" },
     { name: "Vietnamese", code: "vi" }
-];
+  ];
 
 
   const [selectionLanguage, setSelectionLanguage] = useState("");
@@ -285,7 +285,7 @@ const NewsSearch = ({ searchQuery1 }) => {
           </option>
         ))}
       </select>
-      {selectionCountry}
+
       <select className="border-2" onChange={handleSelectionLanguague}>
       <option value="">Select a language</option>
         {
@@ -296,45 +296,49 @@ const NewsSearch = ({ searchQuery1 }) => {
           ))
         }
       </select>
-      {selectionLanguage}
+
       <h1 className="text-3xl font-bold mb-4">Results:</h1>
       <ul className="grid gap-6">
         {results.map((result, index) => (
-          <li key={index} className="grid grid-cols-2 gap-4">
-            <div className="col-span-1">
-              <img
-                src={result.image_url}
-                className="w-full h-auto"
-                alt="No picture available"
-              />
-            </div>
-            <div className="col-span-1">
-              <h2 className="text-xl font-bold mb-2">{result.topic}</h2>
-              <p className="text-gray-700 mb-4">{result.description}</p>
-              <div className="flex flex-col">
-                <p>
-                  <span className="font-bold">Date: </span>
-                  {result.pubDate}
-                </p>
-                <p>
-                  <span className="font-bold">Country: </span>
-                  {result.country}
-                </p>
-                <p>
-                  <span className="font-bold">Language: </span>
-                  {result.language}
-                </p>
-                <p>
-                  <span className="font-bold">Publisher: </span>
-                  {result.creator}
-                </p>
-                <p>
-                  <span className="font-bold">Category: </span>
-                  {result.category}
-                </p>
+          result.image_url !== null ? (
+            <a href={result.link}>
+              <li key={index} className="grid grid-cols-2 gap-4 shadow-md">
+              <div className="col-span-1">
+                <img
+                  src={result.image_url}
+                  className="w-full h-auto"
+                  alt="No picture available"
+                />
               </div>
-            </div>
-          </li>
+              <div className="col-span-1">
+                <h2 className="text-xl font-bold mb-2">{result.topic}</h2>
+                <p className="text-gray-700 mb-4">{result.description}...</p>
+                <div className="flex flex-col">
+                  <p>
+                    <span className="font-bold">Date: </span>
+                    {result.pubDate}
+                  </p>
+                  <p>
+                    <span className="font-bold">Country: </span>
+                    {result.country}
+                  </p>
+                  <p>
+                    <span className="font-bold">Language: </span>
+                    {result.language}
+                  </p>
+                  <p>
+                    <span className="font-bold">Publisher: </span>
+                    {result.creator}
+                  </p>
+                  <p>
+                    <span className="font-bold">Category: </span>
+                    {result.category}
+                  </p>
+                </div>
+              </div>
+            </li> 
+          </a>
+          ) : "" 
         ))}
       </ul>
     </div>

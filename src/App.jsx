@@ -18,20 +18,22 @@ function App() {
   };
   const handleInput = (e) => {
     setInput(e.target.value)
-    console.log(e.target.value)
   }
 
   return (
     <div className='flex flex-col items-center'>
-        <input type="text" onChange={handleInput} className='border-2 border-gega-black rounded-xl relative'/> 
-        <BiSearchAlt className='absolute top-2 right-40'/>
+      <div className='flex items-center w-52 relative'>
+        <input type="text" onChange={handleInput} className='border-2 border-gega-black rounded-xl mt-5 pl-10 pt-1 pb-1'/> 
+        <BiSearchAlt className='absolute top-8 left-3 '/>
+      </div>
+        
       <div>
-        <ul className='flex flex-row justify-around items-center w-96 mt-10'>
+        <ul className='flex flex-row justify-around items-center w-96 mt-10 mb-10'>
           
-          <li className={`bg flex flex-row items-center ${activeComponent === "web" ? 'bg-gega-light' : 'bg-gega-white'}`} onClick={() => handleItemClick('web')}><AiFillHome />Home</li>
-          <li className={`bg flex flex-row items-center ${activeComponent === "image" ? 'bg-gega-light' : 'bg-gega-white'}`} onClick={() => handleItemClick('image')}><BsFillImageFill />Images</li>
-          <li className={`bg flex flex-row items-center ${activeComponent === "news" ? 'bg-gega-light' : 'bg-gega-white'}`} onClick={() => handleItemClick('news')}><BiNews />News</li>
-          <li className={`bg flex flex-row items-center ${activeComponent === "video" ? 'bg-gega-light' : 'bg-gega-white'}`} onClick={() => handleItemClick('video')}><AiFillVideoCamera />Video</li>
+          <li className={`bg flex flex-row items-center cursor-pointer pt-2 pb-2 pl-3 pr-3 rounded-[10px] ${activeComponent === "web" ? 'bg-gega-light' : 'bg-gega-white'}`} onClick={() => handleItemClick('web')}><AiFillHome />Home</li>
+          <li className={`bg flex flex-row items-center cursor-pointer pt-2 pb-2 pl-3 pr-3 rounded-[10px] ${activeComponent === "image" ? 'bg-gega-light' : 'bg-gega-white'}`} onClick={() => handleItemClick('image')}><BsFillImageFill />Images</li>
+          <li className={`bg flex flex-row items-center cursor-pointer pt-2 pb-2 pl-3 pr-3 rounded-[10px] ${activeComponent === "news" ? 'bg-gega-light' : 'bg-gega-white'}`} onClick={() => handleItemClick('news')}><BiNews />News</li>
+          <li className={`bg flex flex-row items-center cursor-pointer pt-2 pb-2 pl-3 pr-3 rounded-[10px] ${activeComponent === "video" ? 'bg-gega-light' : 'bg-gega-white'}`} onClick={() => handleItemClick('video')}><AiFillVideoCamera />Video</li>
         </ul>
       </div>
       <div>
