@@ -235,14 +235,20 @@ const NewsSearch = ({ searchQuery1 }) => {
 ];
 
 
-  const [selection, setSelection] = useState("");
+  const [selectionLanguage, setSelectionLanguage] = useState("");
+  const [selectionCountry, setSelectionCountry] = useState("")
+
+
   const [results, setResults] = useState([]);
   const API_KEY = "pub_25576d7f5e3fad8ad12a5e4a846d450ef7aed";
   const SEARCH_QUERY = searchQuery1;
 
-  const handleSelection = (e) => {  
-    setSelection(e.target.value.toLowerCase());
+  const handleSelectionCountry = (e) => {  
+    setSelectionCountry(e.target.value.toLowerCase());
   };
+  const handleSelectionLanguague = (e) => {
+    setSelectionLanguage(e.target.value.toLowerCase())
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -251,8 +257,11 @@ const NewsSearch = ({ searchQuery1 }) => {
           SEARCH_QUERY
         )}`;
 
-        if (selection) {
-          url += `&language=${selection}`;
+        if (selectionLanguage) {
+          url += `&language=${selectionLanguage}`;
+        }
+        if (selectionCountry) {
+          url += `&country=${selectionCountry}`;
         }
 
         const response = await fetch(url);
@@ -264,18 +273,30 @@ const NewsSearch = ({ searchQuery1 }) => {
     };
 
     fetchData();
-  }, [SEARCH_QUERY, selection]);
+  }, [SEARCH_QUERY, selectionLanguage, selectionCountry]);
 
   return (
     <div className="container mx-auto">
-      <select className="border-2" onChange={handleSelection}>
+      <select className="border-2" onChange={handleSelectionCountry}>
+        <option value="">Select a country</option>
         {countries.map((country) => (
           <option key={country.code} value={country.code}>
             {country.name}
           </option>
         ))}
       </select>
-      {selection}
+      {selectionCountry}
+      <select className="border-2" onChange={handleSelectionLanguague}>
+      <option value="">Select a language</option>
+        {
+          languages.map((language) => (
+            <option value={language.code} key={language.code}>
+               {language.name}
+            </option>
+          ))
+        }
+      </select>
+      {selectionLanguage}
       <h1 className="text-3xl font-bold mb-4">Results:</h1>
       <ul className="grid gap-6">
         {results.map((result, index) => (

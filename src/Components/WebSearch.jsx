@@ -93,10 +93,10 @@ function Web() {
   };
 
   useEffect(() => {
-    fetchPhotos();
+    fetchNews();
   }, [activeComponent, selection]);
 
-  const fetchPhotos = () => {
+  const fetchNews = () => {
     let url = `https://newsdata.io/api/1/news?apikey=pub_258638b95b2160db613fa0bbf55e5160f5266&category=${activeComponent}`;
     if(selection) {
       url += `&language=${selection}`
@@ -104,22 +104,29 @@ function Web() {
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        if (data.results && data.results.length > 0) {
+        if (data.results) {
           setNews(data.results);
         }
       })
       .catch(error => {
-        console.error('Error fetching photos:', error);
+        console.error('Error fetching news:', error);
       });
   };
 
   return (
     <div className="container">
     <h1 className="text-3xl font-bold mb-4 text-center mt-4">Top News in the world</h1>
+    {/* <select className="border-2" onChange={handleSelectionCountry}>
+      {countries.map((country) => (
+          <option key={country.code} value={country.code}>
+            {country.name}
+          </option>
+        ))}
+      </select> */}
     <select onChange={handleSelection} name="Select the language" className='w-96 h-24'>
       {
         languages.map((language) => (
-          <option key={language.code} value={language.code} selected disabled>
+          <option key={language.code} value={language.code}>
             {language.name}
           </option>
         )
@@ -153,7 +160,7 @@ function Web() {
             />
             <h2 className="text-xl font-bold mb-2">{result.topic}</h2>
             <p className="text-gray-700 mb-4">
-              {result.description.length > 70 ? result.description.slice(0, 70) : result.description}
+              {result.description && result.description.length > 70 ? result.description.slice(0, 70) : result.description}
             </p>
             <div className="flex flex-col">
               <p>
