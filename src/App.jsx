@@ -28,10 +28,10 @@ function App() {
       <div>
         <ul className='flex flex-row justify-around items-center w-96 mt-10'>
           
-          <li className='bg flex flex-row items-center' onClick={() => handleItemClick('web')}><AiFillHome />Home</li>
-          <li className='bg flex flex-row items-center' onClick={() => handleItemClick('image')}><BsFillImageFill />Images</li>
-          <li className='bg flex flex-row items-center' onClick={() => handleItemClick('news')}><BiNews />News</li>
-          <li className='bg flex flex-row items-center' onClick={() => handleItemClick('video')}><AiFillVideoCamera />Video</li>
+          <li className={`bg flex flex-row items-center ${activeComponent === "web" ? 'bg-gega-light' : 'bg-gega-white'}`} onClick={() => handleItemClick('web')}><AiFillHome />Home</li>
+          <li className={`bg flex flex-row items-center ${activeComponent === "image" ? 'bg-gega-light' : 'bg-gega-white'}`} onClick={() => handleItemClick('image')}><BsFillImageFill />Images</li>
+          <li className={`bg flex flex-row items-center ${activeComponent === "news" ? 'bg-gega-light' : 'bg-gega-white'}`} onClick={() => handleItemClick('news')}><BiNews />News</li>
+          <li className={`bg flex flex-row items-center ${activeComponent === "video" ? 'bg-gega-light' : 'bg-gega-white'}`} onClick={() => handleItemClick('video')}><AiFillVideoCamera />Video</li>
         </ul>
       </div>
       <div>
