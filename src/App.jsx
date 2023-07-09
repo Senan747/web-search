@@ -21,7 +21,7 @@ function App() {
   }
 
   return (
-    <div className='flex flex-col items-center'>
+    <div className='flex flex-col items-center bg-gega-soft min-h-screen'>
       <div className='flex items-center w-52 relative'>
         <input type="text" onChange={handleInput} className='border-2 border-gega-black rounded-xl mt-5 pl-10 pt-1 pb-1'/> 
         <BiSearchAlt className='absolute top-8 left-3 '/>

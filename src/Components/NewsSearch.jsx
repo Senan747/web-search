@@ -277,7 +277,9 @@ const NewsSearch = ({ searchQuery1 }) => {
 
   return (
     <div className="container mx-auto">
-      <select className="border-2" onChange={handleSelectionCountry}>
+
+      <div className="flex justify-around"> 
+        <select className="border-2 pt-2 pb-2 pl-2 pr-2" onChange={handleSelectionCountry} data-te-select-init>
         <option value="">Select a country</option>
         {countries.map((country) => (
           <option key={country.code} value={country.code}>
@@ -286,7 +288,7 @@ const NewsSearch = ({ searchQuery1 }) => {
         ))}
       </select>
 
-      <select className="border-2" onChange={handleSelectionLanguague}>
+      <select className="border-2 pt-2 pb-2 pl-2 pr-2" onChange={handleSelectionLanguague}>
       <option value="">Select a language</option>
         {
           languages.map((language) => (
@@ -296,8 +298,8 @@ const NewsSearch = ({ searchQuery1 }) => {
           ))
         }
       </select>
-
-      <h1 className="text-3xl font-bold mb-4">Results:</h1>
+      </div>
+      
       <ul className="grid gap-6">
         {results.map((result, index) => (
           result.image_url !== null ? (

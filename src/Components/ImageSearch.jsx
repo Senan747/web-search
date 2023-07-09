@@ -25,14 +25,14 @@ function ImageSearch({ searchQuery1 }) {
   };
 
   if (photos.length === 0) {
-    return <div>There is no picture</div>;
+    return <div>Loading...</div>;
   }
   console.log(searchQuery1)
   return (
     <div>
       <ul className='flex flex-wrap'>
         {photos.map(photo => (
-          <li key={photo.id} className='ml-16'>
+          <li key={photo.id} className="ml-16">
             <img src={photo.previewURL} alt={photo.tags} />
             <p>Photographer: {photo.user}</p>
             <p>Dimensions: {photo.imageWidth}x{photo.imageHeight}</p>

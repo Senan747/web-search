@@ -277,7 +277,7 @@ function Web() {
     <div className="container mx-auto px-4">
       <h1 className="text-3xl font-bold mb-4 text-center mt-4">{activeComponent.toLocaleUpperCase()} news in the world</h1>
       <div className="flex flex-wrap gap-4 justify-center mb-4">
-        <select className="border-2" onChange={handleSelectionCountry}>
+        <select className="border-2 pt-2 pb-2 pl-2 pr-2" onChange={handleSelectionCountry}>
           <option value="">Select a country</option>
           {countries.map((country) => (
             <option key={country.code} value={country.code}>
@@ -285,7 +285,7 @@ function Web() {
             </option>
           ))}
         </select>
-        <select onChange={handleSelectionLanguage} name="Select the language" className="border-2">
+        <select onChange={handleSelectionLanguage} name="Select the language" className="border-2 pt-2 pb-2 pl-2 pr-2">
           <option value="">Select a language</option>
           {languages.map((language) => (
             <option key={language.code} value={language.code}>
@@ -295,19 +295,18 @@ function Web() {
         </select>
       </div>
       <ul className="flex flex-row flex-wrap m-8">
-        <li className = {`pl-4 pr-4 pt-2 pb-2 ml-3 cursor-pointer bg-green-500 rounded-lg ${activeComponent === 'top' ? 'bg-green-500' : 'bg-gray-200'}`} onClick={() => setActiveComponent("top")}>Top</li>
-        <li className = {`pl-4 pr-4 pt-2 pb-2 ml-3 cursor-pointer bg-gega-light rounded-lg ${activeComponent === 'top' ? 'bg-green-500' : 'bg-gray-200'}`} onClick={() => setActiveComponent("top")}>Top</li>
-        <li className = {`pl-4 pr-4 pt-2 pb-2 ml-3 cursor-pointer bg-gega-light rounded-lg ${activeComponent === 'business' ? 'bg-green-500' : 'bg-gray-200'}`} onClick={() => setActiveComponent("business")}>Business</li>
-        <li className = {`pl-4 pr-4 pt-2 pb-2 ml-3 cursor-pointer bg-gega-light rounded-lg ${activeComponent === 'entertainment' ? 'bg-green-500' : 'bg-gray-200'}`} onClick={() => setActiveComponent("entertainment")}>Entertainment</li>
-        <li className = {`pl-4 pr-4 pt-2 pb-2 ml-3 cursor-pointer bg-gega-light rounded-lg ${activeComponent === 'environment' ? 'bg-green-500' : 'bg-gray-200'}`} onClick={() => setActiveComponent("environment")}>Environment</li>
-        <li className = {`pl-4 pr-4 pt-2 pb-2 ml-3 cursor-pointer bg-gega-light rounded-lg ${activeComponent === 'food' ? 'bg-green-500' : 'bg-gray-200'}`} onClick={() => setActiveComponent("food")}>Food</li>
-        <li className = {`pl-4 pr-4 pt-2 pb-2 ml-3 cursor-pointer bg-gega-light rounded-lg ${activeComponent === 'health' ? 'bg-green-500' : 'bg-gray-200'}`} onClick={() => setActiveComponent("health")}>Health</li>
-        <li className = {`pl-4 pr-4 pt-2 pb-2 ml-3 cursor-pointer bg-gega-light rounded-lg ${activeComponent === 'politics' ? 'bg-green-500' : 'bg-gray-200'}`} onClick={() => setActiveComponent("politics")}>Politics</li>
-        <li className = {`pl-4 pr-4 pt-2 pb-2 ml-3 cursor-pointer bg-gega-light rounded-lg ${activeComponent === 'science' ? 'bg-green-500' : 'bg-gray-200'}`} onClick={() => setActiveComponent("science")}>Science</li>
-        <li className = {`pl-4 pr-4 pt-2 pb-2 ml-3 cursor-pointer bg-gega-light rounded-lg ${activeComponent === 'sports' ? 'bg-green-500' : 'bg-gray-200'}`} onClick={() => setActiveComponent("sports")}>Sports</li>
-        <li className = {`pl-4 pr-4 pt-2 pb-2 ml-3 cursor-pointer bg-gega-light rounded-lg ${activeComponent === 'technology' ? 'bg-green-500' : 'bg-gray-200'}`} onClick={() => setActiveComponent("technology")}>Technology</li>
-        <li className = {`pl-4 pr-4 pt-2 pb-2 ml-3 cursor-pointer bg-gega-light rounded-lg ${activeComponent === 'tourism' ? 'bg-green-500' : 'bg-gray-200'}`} onClick={() => setActiveComponent("tourism")}>Tourism</li>
-        <li className = {`pl-4 pr-4 pt-2 pb-2 ml-3 cursor-pointer bg-gega-light rounded-lg ${activeComponent === 'world' ? 'bg-green-500' : 'bg-gray-200'}`} onClick={() => setActiveComponent("world")}>World</li>
+        <li className = {`pl-4 pr-4 pt-2 pb-2 ml-3 mb-2 cursor-pointer bg-gega-light rounded-lg ${activeComponent === 'top' ? 'bg-green-500' : 'bg-gray-200'}`} onClick={() => setActiveComponent("top")}>Top</li>
+        <li className = {`pl-4 pr-4 pt-2 pb-2 ml-3 mb-2 cursor-pointer bg-gega-light rounded-lg ${activeComponent === 'business' ? 'bg-green-500' : 'bg-gray-200'}`} onClick={() => setActiveComponent("business")}>Business</li>
+        <li className = {`pl-4 pr-4 pt-2 pb-2 ml-3 mb-2 cursor-pointer bg-gega-light rounded-lg ${activeComponent === 'entertainment' ? 'bg-green-500' : 'bg-gray-200'}`} onClick={() => setActiveComponent("entertainment")}>Entertainment</li>
+        <li className = {`pl-4 pr-4 pt-2 pb-2 ml-3 mb-2 cursor-pointer bg-gega-light rounded-lg ${activeComponent === 'environment' ? 'bg-green-500' : 'bg-gray-200'}`} onClick={() => setActiveComponent("environment")}>Environment</li>
+        <li className = {`pl-4 pr-4 pt-2 pb-2 ml-3 mb-2 cursor-pointer bg-gega-light rounded-lg ${activeComponent === 'food' ? 'bg-green-500' : 'bg-gray-200'}`} onClick={() => setActiveComponent("food")}>Food</li>
+        <li className = {`pl-4 pr-4 pt-2 pb-2 ml-3 mb-2 cursor-pointer bg-gega-light rounded-lg ${activeComponent === 'health' ? 'bg-green-500' : 'bg-gray-200'}`} onClick={() => setActiveComponent("health")}>Health</li>
+        <li className = {`pl-4 pr-4 pt-2 pb-2 ml-3 mb-2 cursor-pointer bg-gega-light rounded-lg ${activeComponent === 'politics' ? 'bg-green-500' : 'bg-gray-200'}`} onClick={() => setActiveComponent("politics")}>Politics</li>
+        <li className = {`pl-4 pr-4 pt-2 pb-2 ml-3 mb-2 cursor-pointer bg-gega-light rounded-lg ${activeComponent === 'science' ? 'bg-green-500' : 'bg-gray-200'}`} onClick={() => setActiveComponent("science")}>Science</li>
+        <li className = {`pl-4 pr-4 pt-2 pb-2 ml-3 mb-2 cursor-pointer bg-gega-light rounded-lg ${activeComponent === 'sports' ? 'bg-green-500' : 'bg-gray-200'}`} onClick={() => setActiveComponent("sports")}>Sports</li>
+        <li className = {`pl-4 pr-4 pt-2 pb-2 ml-3 mb-2 cursor-pointer bg-gega-light rounded-lg ${activeComponent === 'technology' ? 'bg-green-500' : 'bg-gray-200'}`} onClick={() => setActiveComponent("technology")}>Technology</li>
+        <li className = {`pl-4 pr-4 pt-2 pb-2 ml-3 mb-2 cursor-pointer bg-gega-light rounded-lg ${activeComponent === 'tourism' ? 'bg-green-500' : 'bg-gray-200'}`} onClick={() => setActiveComponent("tourism")}>Tourism</li>
+        <li className = {`pl-4 pr-4 pt-2 pb-2 ml-3 mb-2 cursor-pointer bg-gega-light rounded-lg ${activeComponent === 'world' ? 'bg-green-500' : 'bg-gray-200'}`} onClick={() => setActiveComponent("world")}>World</li>
       </ul>
       <ul className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {news.map((result, index) => (
